@@ -1,4 +1,4 @@
-package com.raj.finman.service;
+package com.raj.finman.security;
 
 import com.raj.finman.model.MarketItem;
 import com.raj.finman.repository.MarketItemRepository;

@@ -4,6 +4,9 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Dashboard from './components/Dashboard';
 import Navbar from './components/Navbar';
+import HistoryPage from './pages/HistoryPage'; // Import the new page
+
+
 
 const ProtectedRoute = ({ children }) => {
     const { user } = useAuth();
@@ -28,6 +31,11 @@ function App() {
                             </div>
                         </ProtectedRoute>
                     } />
+                <Route path="/history" element={
+                    <ProtectedRoute>
+                        <HistoryPage />
+                    </ProtectedRoute>
+                } />
                 </Routes>
             </Router>
         </AuthProvider>

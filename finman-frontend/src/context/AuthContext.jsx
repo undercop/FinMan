@@ -33,11 +33,22 @@ export const AuthProvider = ({ children }) => {
         setUser(null);
     };
 
-    return (
-        <AuthContext.Provider value={{ user, login, logout, loading }}>
-            {!loading && children}
-        </AuthContext.Provider>
-    );
+   // inside your AuthProvider function...
+   const refreshUser = async () => {
+       try {
+           const res = await api.get('/users/me');
+           setUser(res.data); // This updates the global balance!
+       } catch (err) {
+           console.error("Failed to refresh user", err);
+       }
+   };
+
+   // Update your return statement to include it
+   return (
+       <AuthContext.Provider value={{ user, login, logout, loading, refreshUser }}>
+           {!loading && children}
+       </AuthContext.Provider>
+   );
 };
 
 export const useAuth = () => useContext(AuthContext);
